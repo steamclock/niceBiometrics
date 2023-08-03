@@ -1,6 +1,6 @@
 # NiceBiometrics
 
-A SwiftUI library that simplifies the handling of various biometric states and controls.
+A SwiftUI library that simplifies the handling of various biometric states, controls, and error handling.
 
 ## TLDR
 1. Enter NSFaceIDUsageDescription in Info.plist
