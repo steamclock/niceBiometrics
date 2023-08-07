@@ -72,7 +72,7 @@ The prompt also looks and behaves slightly differently between Touch ID and Face
 
 |Face ID Prompt|Face ID Try Again|Touch ID Prompt|Touch ID Try Again|
 |----|----|----|----|
-|![prompt-1](https://github.com/steamclock/niceBiometrics/assets/4675020/cbfa5dfe-2e10-478e-9edb-d6d3c43e65f0)|![prompt-2](https://github.com/steamclock/niceBiometrics/assets/4675020/2cfbc9f9-6b81-46f5-b5d5-c9441ceec38a)|![prompt-3](https://github.com/steamclock/niceBiometrics/assets/4675020/88664192-f255-4f40-9528-5934596d1164)|![prompt-4](https://github.com/steamclock/niceBiometrics/assets/4675020/00715a0f-9edc-4c7f-a8ad-58f77bfb5a00)|
+|![prompt-1](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/prompt-1.png)|![prompt-2](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/prompt-2.png)|![prompt-3](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/prompt-3.png)|![prompt-4](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/prompt-4.png)|
 
 ##### Fallback Button
 And for both Touch ID and Face ID devices, the default fallback button is "Enter Password" when using deviceOwnerAuthenticationWithBiometrics. The fallback option is displayed after the 1st failed attempt on a Touch ID device, but on a Face ID device it is only displayed after the 2nd failed attempt. This is not the same as the device passcode. It is an arbitrary password you can use to determine whether the app should allow the user to still proceed if they know the right password. For most cases, the fallback button isn't very useful, because it kind of defeats the purpose of having biometrics authentication, and it also requires extra view and logic setup. Most apps seem to just disable it, and the way to disable it is a little hidden as well 😅
@@ -93,7 +93,7 @@ And since passcode authentication is now involved, it is worth knowing that like
 
 |Password Fallback|Passcode Fallback|Passcode Screen|
 |----|----|----|
-|![fallback-1](https://github.com/steamclock/niceBiometrics/assets/4675020/1039714b-0633-4785-aaf7-3dc1d2406013)|![fallback-2](https://github.com/steamclock/niceBiometrics/assets/4675020/de8d9a99-d4ea-4292-b362-21bbbbe5fe59)|![fallback-3](https://github.com/steamclock/niceBiometrics/assets/4675020/f87502e6-7ccf-47dd-85d8-d1d48f40ccab)|
+|![fallback-1](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/fallback-1.png)|![fallback-2](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/fallback-2.png)|![fallback-3](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/fallback-3.png)|
 
 #### Other LAPolicy and Best Practices
 There are also other [LAPolicy](https://developer.apple.com/documentation/localauthentication/lapolicy) available, but they are for supporting Apple Watch, and that's a discussion for another day. In short, most apps probably want to use the <b>WithBiometrics</b> policy. Contrary, use <b>deviceOwnerAuthentication</b> if you are sure your app needs to leverage passcode authentication. I recommend disabling the fallback button as well when using <b>WithBiometrics</b>, unless you've identified a specific reason for allowing the circumvention of biometrics authentication. On the other hand, you probably <b>don't</b> want to disable the fallback button when you are using <b>deviceOwnerAuthentication</b>, because that will disable passcode authentication altogether, which probably goes against the very reason why you chose that LAPolicy in the first place.
@@ -109,13 +109,13 @@ There are a few [errors](https://developer.apple.com/documentation/localauthenti
 
 |Not Enrolled Error|Not Available Error|Passcode Required Error|Lockout Error|
 |----|----|----|----|
-|![error-1](https://github.com/steamclock/niceBiometrics/assets/4675020/bd4d808b-d349-4f81-8abb-bbbd7e989624)|![error-2](https://github.com/steamclock/niceBiometrics/assets/4675020/502a3098-a132-4120-879d-62aced4b7209)|![error-3](https://github.com/steamclock/niceBiometrics/assets/4675020/9648d866-d858-442d-8bbf-7bfbc657ce27)|![error-4](https://github.com/steamclock/niceBiometrics/assets/4675020/635fc891-076f-4ef9-b744-1789da0c3de7)|
+|![error-1](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/error-1.png)|![error-2](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/error-2.png)|![error-3](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/error-3.png)|![error-4](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/error-4.png)|
 
 There is also an error called biometryLockout that is quite interesting. If the user has "Face ID with a Mask" turned on, then <b>regardless</b> of how many failed attempts there are, this error <b>will never</b> trigger.
 
 |Face ID Mask Setting|
 |----|
-|![mask-setting](https://github.com/steamclock/niceBiometrics/assets/4675020/6572a2db-1c6d-442e-94b8-b7ecdb00679b)|
+|![mask-setting](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/mask-setting.png)|
 
 As you can see, error-handling requires a bit of finesse and attention to details, especially if you are starting from scratch. However, NiceBiometrics takes care of all of this for us.
 
@@ -157,7 +157,7 @@ BiometricsButton {
 
 |Sign in with Biometry|Sign in without Biometry|
 |----|----|
-|![button-enabled](https://github.com/steamclock/niceBiometrics/assets/4675020/e99d4e7d-250c-4d48-aa6a-8e643af210c8)|![button-disabled](https://github.com/steamclock/niceBiometrics/assets/4675020/cb70c4bc-f9ed-4adf-9dc4-4f2ebbb31def)|
+|![button-enabled](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/button-enabled.png)|![button-disabled](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/button-disabled.png)|
 
 ### The Toggle
 An elegant toggle with comprehensive error-handling that really helps the users when there's an error. To use it, just insert the following code in a List (most likely your in-app settings screen):
@@ -168,7 +168,7 @@ BiometricsToggleSection()
 ```
 |Biometry Toggle Section|
 |----|
-|![toggle-section](https://github.com/steamclock/niceBiometrics/assets/4675020/9b54e5e4-bdc3-4285-9049-62740645175e)|
+|![toggle-section](https://github.com/steamclock/niceBiometrics/blob/main/Documentation/Screenshots/toggle-section.png)|
 
 ## Next Steps
 As mentioned before, this is still a very early version and much work still remains. For examples:
