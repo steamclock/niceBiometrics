@@ -17,7 +17,7 @@ public struct BiometricsButton: View {
 
     public init(completion: @escaping () -> Void, passwordLogin: @escaping () -> Void) {
         self.completion = completion
-        self.passwordLogin = completion
+        self.passwordLogin = passwordLogin
     }
 
     public var body: some View {
